@@ -14,7 +14,7 @@ let dirction = {x:0,y:0}
 
 let food = null
 let speed = 200
-let gameInterVar = null
+let gameInterVarl = null
 
 const spawnFood = ()=>{
     food = {
@@ -27,4 +27,9 @@ const spawnFood = ()=>{
             break
         }
     }
+}
+const gameOver = ()=>{
+    clearInterval(gameInterVarl)
+    alert('GameOver')
+    document.location.reload()
 }
