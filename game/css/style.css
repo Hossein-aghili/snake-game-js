@@ -1,16 +1,33 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-body{
+  }
+  
+  body {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000;
-}
-canvas{
+    background: linear-gradient(135deg, #000, #111, #222);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #0f0;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .title {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #0f0;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+  }
+  
+  canvas {
     background-color: #111;
-    border: #333;
-}
+    border: 2px solid #0f0;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    border-radius: 8px;
+  }

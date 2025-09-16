@@ -59,13 +59,53 @@ const update = () => {
 
 const draw = () => {
     ctx.clearRect(0, 0, canvasWidth, canvasHeigtht)
-    for (cell of snake) {
-        ctx.fillStyle = 'green'
-        ctx.fillRect(cell.x * gridSize, cell.y * gridSize, gridSize - 1, gridSize - 1)
+
+    if (snake.length === 1) {
+        // وقتی مار فقط یک خانه داره، دایره بکش
+        ctx.beginPath()
+        ctx.fillStyle = "#0f0"
+        ctx.arc(
+            snake[0].x * gridSize + gridSize / 2,
+            snake[0].y * gridSize + gridSize / 2,
+            gridSize / 2 - 2,
+            0,
+            Math.PI * 2
+        )
+        ctx.fill()
+    } else {
+        // مار با طول بیشتر، خط بکش
+        ctx.beginPath()
+        ctx.lineWidth = gridSize - 4
+        ctx.lineJoin = "round"
+        ctx.lineCap = "round"
+        ctx.strokeStyle = "#0f0"
+
+        ctx.moveTo(
+            snake[0].x * gridSize + gridSize / 2,
+            snake[0].y * gridSize + gridSize / 2
+        )
+
+        for (let i = 1; i < snake.length; i++) {
+            ctx.lineTo(
+                snake[i].x * gridSize + gridSize / 2,
+                snake[i].y * gridSize + gridSize / 2
+            )
+        }
+        ctx.stroke()
     }
+
+    // غذا (دایره قرمز)
     if (food) {
-        ctx.fillStyle = 'red'
-        ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 1, gridSize - 1)
+        ctx.beginPath()
+        ctx.fillStyle = "#f00"
+        ctx.arc(
+            food.x * gridSize + gridSize / 2,
+            food.y * gridSize + gridSize / 2,
+            gridSize / 2 - 3,
+            0,
+            Math.PI * 2
+        )
+        ctx.fill()
     }
 }
 const gameLoop = () => {
