@@ -61,7 +61,6 @@ const draw = () => {
     ctx.clearRect(0, 0, canvasWidth, canvasHeigtht)
 
     if (snake.length === 1) {
-        // وقتی مار فقط یک خانه داره، دایره بکش
         ctx.beginPath()
         ctx.fillStyle = "#0f0"
         ctx.arc(
@@ -73,7 +72,6 @@ const draw = () => {
         )
         ctx.fill()
     } else {
-        // مار با طول بیشتر، خط بکش
         ctx.beginPath()
         ctx.lineWidth = gridSize - 4
         ctx.lineJoin = "round"
@@ -94,7 +92,6 @@ const draw = () => {
         ctx.stroke()
     }
 
-    // غذا (دایره قرمز)
     if (food) {
         ctx.beginPath()
         ctx.fillStyle = "#f00"
