@@ -33,6 +33,29 @@ const gameOver = () => {
     alert('GameOver')
     document.location.reload()
 }
+const update = () => {
+    if (dirction.x === 0 && dirction.y === 0) return
+    const newHead = {
+        x: snake[0].x + dirction.x,
+        y: snake[0].y + dirction.y
+    }
+    if (newHead.x < 0 || newHead.x >= cols || newHead.y < 0 || newHead.y >= rows) {
+        gameOver()
+        return
+    }
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[i].x === newHead.x && snake[i].y === newHead.y) {
+            gameOver()
+            return
+        }
+    }
+    snake.unshift(newHead)
+    if (food && food.x === newHead.x && food.y === newHead.y) {
+        spawnFood()
+    } else {
+        snake.pop()
+    }
+}
 
 const draw = () => {
     ctx.clearRect(0, 0, canvasWidth, canvasHeigtht)
@@ -46,11 +69,12 @@ const draw = () => {
     }
 }
 const gameLoop = () => {
+    update()
     draw()
 }
 
 document.addEventListener('keydown', (e) => {
-    switch (code.e) {
+    switch (e.code) {
         case "ArrowUp":
             if (dirction.y === 1) return
             dirction = { x: 0, y: -1 }
@@ -68,5 +92,5 @@ document.addEventListener('keydown', (e) => {
             dirction = { x: 1, y: 0 }
     }
 })
-
-gameInterVarl = setInterval(gameLoop,speed)
+spawnFood()
+gameInterVarl = setInterval(gameLoop, speed)
