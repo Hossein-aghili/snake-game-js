@@ -10,3 +10,8 @@ const rows = canvasHeigtht / gridSize
 
 let snake =[{x:Math.floor(cols / 2),y:Math.floor(rows / 2)}]
 
+let dirction = {x:0,y:0}
+
+let food = null
+let speed = 200
+let gameInterVar = null
